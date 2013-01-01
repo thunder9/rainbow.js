@@ -68,9 +68,9 @@
         p = v - k,
         q = k + m,
         rgba = [
-          Math.floor([v, p, m, m, q, v][i] * 255),
-          Math.floor([q, v, v, p, m, m][i] * 255),
-          Math.floor([m, m, q, v, v, p][i] * 255),
+          Math.round([v, p, m, m, q, v][i] * 255),
+          Math.round([q, v, v, p, m, m][i] * 255),
+          Math.round([m, m, q, v, v, p][i] * 255),
           a
         ];
     return 'rgba(' + rgba.join(',') + ')';
