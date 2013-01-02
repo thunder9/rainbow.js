@@ -47,11 +47,10 @@
         $rainbowed.each(function() {
           var $ch = $(this),
               pos = $ch.position(),
-              hue   = 0,
               x   = pos.left + 0.5 * $ch.width(),
               y   = pos.top + 0.5 * $ch.height(),
-              u   = (x* Math.cos(angle) + y * Math.sin(angle)) / period;
-          hue = u - Math.floor(u);
+              u   = (x* Math.cos(angle) + y * Math.sin(angle)) / period,
+              hue = u - Math.floor(u);
           $ch.css('color', hsvaToRgba(hue, saturation, value, alpha));
         });
 
