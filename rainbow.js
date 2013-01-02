@@ -7,23 +7,25 @@
             
   $.fn.rainbow = function(options) {
     var $containers = this,
-        direction   = 'h',
+        angle       = 0,
         period      = 300,
         saturation  = 1,
         value       = 1,
         alpha       = 1;
 
     if ($.isPlainObject(options)) {
-      direction = options.dirction || 'h';
+      angle = options.direction || 0
       period = options.period || 300;
       saturation = options.saturation || 1;
       value = options.value || 1;
       alpha = options.alpha || 1;
     } else {
-      direction = options || 'h';
+      angle = options;
     }
-     
-    direction = direction.indexOf('v') >= 0 ? 'v' : 'h';
+    
+    if (!$.isNumeric(angle))
+        angle = angle === 'vertical' ? 90 : 0;      
+    angle *= Math.PI / 180;
       
     return $containers.each(function() {
 
@@ -46,13 +48,10 @@
           var $ch = $(this),
               pos = $ch.position(),
               hue   = 0,
-              x;
-          if (direction === 'h') {
-            x = (pos.left + 0.5 * $ch.width()) / period;            
-          } else {
-            x = (pos.top + 0.5 * $ch.height()) / period;
-          }
-          hue = x - Math.floor(x);
+              x   = pos.left + 0.5 * $ch.width(),
+              y   = pos.top + 0.5 * $ch.height(),
+              u   = (x* Math.cos(angle) + y * Math.sin(angle)) / period;
+          hue = u - Math.floor(u);
           $ch.css('color', hsvaToRgba(hue, saturation, value, alpha));
         });
 
