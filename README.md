@@ -10,9 +10,9 @@ Call the plugin on the selected elements containing the target text.
 ```js
 $('#target').rainbow(); // horizontal rainbow by default
 
-$('#target').rainbow('vertical'); // specifying vertical rainbow
+$('#target').rainbow('vertical'); // specify vertical rainbow
 
-$('#target').rainbow(45); // specifying rainbow direction by angle in degrees
+$('#target').rainbow(45); // specify rainbow direction by angle in degrees
 
 // multiple options are also allowed
 $('#target').rainbow({
@@ -23,5 +23,5 @@ $('#target').rainbow({
   alpha: 0.7 // from 0 to 1
 });
 ```
-## License
+# License
 Copyright (c) 2013 thunder9 licensed under the MIT license.
