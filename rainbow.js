@@ -1,5 +1,6 @@
 // rainbow.js 
-// A jquery plugin for changing text to rainbow colors
+// A jquery plugin for changing text to rainbow colored
+// by thunder9 (https://github.com/thunder9)
 // Copyright (c) 2013 thunder9 licensed under the MIT license.
 
 ;(function($) {
