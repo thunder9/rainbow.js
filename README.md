@@ -3,6 +3,8 @@ rainbow.js
 
 A jquery plugin for changing text to rainbow colored.
 
+Try [previewer](http://rainbowjs.herokuapp.com/).
+
 # Usage
 
 Call the plugin on the selected elements containing the target text.
