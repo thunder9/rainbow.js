@@ -8,7 +8,7 @@
   $.fn.rainbow = function(options) {
     var opts, angle;
 
-    if (!($.isPlainObject(options))) options = { direction: options };
+    if (!$.isPlainObject(options)) options = { direction: options };
     opts = $.extend({}, $.fn.rainbow.defaults, options);
       
     if ($.isNumeric(opts.direction)) {
