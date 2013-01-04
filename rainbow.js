@@ -6,31 +6,22 @@
 ;(function($) {
             
   $.fn.rainbow = function(options) {
-    var $containers = this,
-        angle       = 0,
-        period      = 300,
-        saturation  = 1,
-        value       = 1,
-        alpha       = 1;
+    var opts, angle;
 
-    if ($.isPlainObject(options)) {
-      angle = options.direction || 0
-      period = options.period || 300;
-      saturation = options.saturation || 1;
-      value = options.value || 1;
-      alpha = options.alpha || 1;
+    if (!($.isPlainObject(options))) options = { direction: options };
+    opts = $.extend({}, $.fn.rainbow.defaults, options);
+      
+    if ($.isNumeric(opts.direction)) {
+      angle = opts.direction;
     } else {
-      angle = options;
-    }
-    
-    if (!$.isNumeric(angle))
-        angle = angle === 'vertical' ? 90 : 0;      
+      angle = opts.direction === 'vertical' ? 90 : 0;
+    }          
     angle *= Math.PI / 180;
       
-    return $containers.each(function() {
+    return this.each(function() {
 
       $(this).contents().filter(function () {
-          return this.nodeType === 3;
+        return this.nodeType === 3;
       }).each(function() {
         var $textnode = $(this),
             $rainbowed,
@@ -49,9 +40,9 @@
               pos = $ch.position(),
               x   = pos.left + 0.5 * $ch.width(),
               y   = pos.top + 0.5 * $ch.height(),
-              u   = (x* Math.cos(angle) + y * Math.sin(angle)) / period,
+              u   = (x* Math.cos(angle) + y * Math.sin(angle)) / opts.period,
               hue = u - Math.floor(u);
-          $ch.css('color', hsvaToRgba(hue, saturation, value, alpha));
+          $ch.css('color', hsvaToRgba(hue, opts.saturation, opts.value, opts.alpha));
         });
 
       });
@@ -59,6 +50,14 @@
       
   };
 
+  $.fn.rainbow.defaults = {
+    direction: 'horizontal',
+    period: 300,
+    saturation: 1,
+    value: 1,
+    alpha: 1
+  };
+  
   var hsvaToRgba = function(h, s, v, a) {
     var f = h * 6,
         i = Math.floor(f),
